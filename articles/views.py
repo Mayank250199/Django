@@ -5,8 +5,9 @@ from django.http import HttpResponse
 def article(request):
     # return HttpResponse("home")
     articles = Article.objects.all().order_by('date')
-    return render(request,'article.html',{'articles':articles})
+    return render(request,'article_list.html',{'articles':articles})
 
 def article_detail(request,slug):
-    return HttpResponse(slug)
+    article = Article.objects.get(slug=slug)
+    return render(request,'articles.html',{'article':article})
     
